@@ -1,0 +1,31 @@
+# Brainnco static site - fix 500, styling, and serve index correctly
+DirectoryIndex index.html
+
+# Stop .html being run as PHP (common cause of 500 on shared hosting)
+RemoveHandler .html .htm
+<FilesMatch "\.(html|htm)$">
+  SetHandler default-handler
+</FilesMatch>
+
+# Allow access to _next (CSS, JS, fonts) - required for Next.js static export
+# Rewrite /contact/ and /contact to contact.html so refresh works (no directory listing)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Do not rewrite requests to _next or static files
+  RewriteRule ^_next/ - [L]
+  RewriteRule ^images/ - [L]
+  # Next.js export puts pages at root as .html; route paths to them so /contact/ and /contact work
+  RewriteRule ^contact/?$ contact.html [L]
+  RewriteRule ^about/?$ about.html [L]
+  RewriteRule ^services/?$ services.html [L]
+  RewriteRule ^blog/?$ blog.html [L]
+  RewriteRule ^projects/?$ projects.html [L]
+  RewriteRule ^testimonials/?$ testimonials.html [L]
+</IfModule>
+
+# Correct MIME types so CSS, JS, and fonts load (fixes "messed up" styling)
+AddType text/css .css
+AddType application/javascript .js
+AddType font/woff2 .woff2
+AddType font/woff .woff
+AddType font/ttf .ttf
