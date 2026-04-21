@@ -1,20 +1,22 @@
 /**
- * Contact form API – sends notification email via **Resend** (server-side only).
+ * Contact form API – Resend. **From** = `RESEND_CONTACT_FROM` (verified sender, e.g. contact@brainnco.com).
+ * **To** = `contact@brainnco.com`. **Reply-To** = the visitor so you can reply directly.
  */
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { escapeHtml } from "@/lib/escape-html"
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-const RESEND_FROM = process.env.RESEND_FROM
-const CONTACT_TO = process.env.RESEND_CONTACT_TO || "contact@brainnco.com"
+/** Resend "from" address for contact notifications (must be a verified domain sender). */
+const RESEND_CONTACT_FROM = process.env.RESEND_CONTACT_FROM
+const CONTACT_INBOX = "contact@brainnco.com"
 
 export async function POST(request: NextRequest) {
-  if (!RESEND_API_KEY || !RESEND_FROM) {
+  if (!RESEND_API_KEY || !RESEND_CONTACT_FROM) {
     return NextResponse.json(
       {
         success: false,
-        message: "Email is not configured. Set RESEND_API_KEY and RESEND_FROM on the server.",
+        message: "Email is not configured. Set RESEND_API_KEY and RESEND_CONTACT_FROM on the server.",
       },
       { status: 503 }
     )
@@ -70,8 +72,8 @@ export async function POST(request: NextRequest) {
 
   const resend = new Resend(RESEND_API_KEY)
   const { error } = await resend.emails.send({
-    from: RESEND_FROM,
-    to: CONTACT_TO,
+    from: RESEND_CONTACT_FROM,
+    to: CONTACT_INBOX,
     replyTo: trimmedEmail,
     subject: `brain & co. – New message from ${trimmedName}`,
     text: textBody,
@@ -87,7 +89,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (process.env.NODE_ENV === "development") {
-    console.log("[Contact form] Email sent successfully to:", CONTACT_TO)
+    console.log("[Contact form] Email sent successfully to:", CONTACT_INBOX, "reply-to:", trimmedEmail)
   }
   return NextResponse.json({ success: true, message: "Message sent successfully." })
 }
