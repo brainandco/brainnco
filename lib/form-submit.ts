@@ -2,7 +2,8 @@
  * Form submission targets:
  *
  * - Default: POST to `/api/send-email` and `/api/newsletter` (same origin). Configure **Resend**
- *   on the server: `RESEND_API_KEY`, `RESEND_CONTACT_FROM` (contact from), and `RESEND_NEWSLETTER_FROM` (newsletter from).
+ *   on the server: `RESEND_API_KEY`, `RESEND_CONTACT_FROM`, `RESEND_NEWSLETTER_FROM` (verified mailboxes in <>; the
+ *   visible From name is built from the person submitting each form).
  * - Web3Forms: set `NEXT_PUBLIC_USE_WEB3FORMS=true` and set `NEXT_PUBLIC_WEB3FORMS_*` keys (browser submit).
  */
 const USE_WEB3FORMS = process.env.NEXT_PUBLIC_USE_WEB3FORMS === "true"

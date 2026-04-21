@@ -1,13 +1,14 @@
 /**
- * Newsletter signup API – Resend. **From** = `RESEND_NEWSLETTER_FROM` (verified sender).
- * **To** = `newsletter@brainnco.com`. **Reply-To** = the subscriber so you can reply directly.
+ * Newsletter signup – Resend. **From** shows the subscriber email as the sender name; `<RESEND_NEWSLETTER_FROM>` must be verified.
+ * **To** = newsletter@brainnco.com. **Reply-To** = subscriber email.
  */
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { escapeHtml } from "@/lib/escape-html"
+import { resendFromAsSubmitter } from "@/lib/resend-from"
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-/** Resend "from" address for newsletter notifications (must be a verified domain sender). */
+/** Verified domain mailbox (used in angle brackets only). */
 const RESEND_NEWSLETTER_FROM = process.env.RESEND_NEWSLETTER_FROM
 const NEWSLETTER_INBOX = "newsletter@brainnco.com"
 
@@ -55,9 +56,11 @@ export async function POST(request: NextRequest) {
   `
   const textBody = `New newsletter signup\n\nEmail: ${trimmedEmail}\n\nSent from the website footer newsletter form.`
 
+  const fromHeader = resendFromAsSubmitter(trimmedEmail, RESEND_NEWSLETTER_FROM)
+
   const resend = new Resend(RESEND_API_KEY)
   const { error } = await resend.emails.send({
-    from: RESEND_NEWSLETTER_FROM,
+    from: fromHeader,
     to: NEWSLETTER_INBOX,
     replyTo: trimmedEmail,
     subject: `brain & co. – Newsletter signup: ${trimmedEmail}`,
@@ -74,7 +77,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (process.env.NODE_ENV === "development") {
-    console.log("[Newsletter] Signup email sent to:", NEWSLETTER_INBOX, "reply-to:", trimmedEmail)
+    console.log("[Newsletter] Signup email sent to:", NEWSLETTER_INBOX, "from header:", fromHeader)
   }
   return NextResponse.json({ success: true, message: "Thanks for subscribing." })
 }

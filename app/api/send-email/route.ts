@@ -1,13 +1,14 @@
 /**
- * Contact form API – Resend. **From** = `RESEND_CONTACT_FROM` (verified sender, e.g. contact@brainnco.com).
- * **To** = `contact@brainnco.com`. **Reply-To** = the visitor so you can reply directly.
+ * Contact form – Resend. **From** shows the person who wrote in; `<RESEND_CONTACT_FROM>` must be verified in Resend.
+ * **To** = contact@brainnco.com. **Reply-To** = visitor email.
  */
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import { escapeHtml } from "@/lib/escape-html"
+import { resendFromAsSubmitter } from "@/lib/resend-from"
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
-/** Resend "from" address for contact notifications (must be a verified domain sender). */
+/** Verified domain mailbox (used in angle brackets only). */
 const RESEND_CONTACT_FROM = process.env.RESEND_CONTACT_FROM
 const CONTACT_INBOX = "contact@brainnco.com"
 
@@ -70,9 +71,11 @@ export async function POST(request: NextRequest) {
     <pre style="white-space: pre-wrap; font-family: inherit;">${escapeHtml(trimmedMessage)}</pre>
   `
 
+  const fromHeader = resendFromAsSubmitter(`${trimmedName} (${trimmedEmail})`, RESEND_CONTACT_FROM)
+
   const resend = new Resend(RESEND_API_KEY)
   const { error } = await resend.emails.send({
-    from: RESEND_CONTACT_FROM,
+    from: fromHeader,
     to: CONTACT_INBOX,
     replyTo: trimmedEmail,
     subject: `brain & co. – New message from ${trimmedName}`,
@@ -89,7 +92,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (process.env.NODE_ENV === "development") {
-    console.log("[Contact form] Email sent successfully to:", CONTACT_INBOX, "reply-to:", trimmedEmail)
+    console.log("[Contact form] Email sent successfully to:", CONTACT_INBOX, "from header:", fromHeader)
   }
   return NextResponse.json({ success: true, message: "Message sent successfully." })
 }
