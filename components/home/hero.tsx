@@ -119,7 +119,7 @@ export function Hero() {
             >
               <Link
                 href="/services"
-                className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl hover:opacity-95"
+                className="group inline-flex items-center gap-2 rounded-full bg-brand-accent px-7 py-3.5 text-sm font-semibold text-primary shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-brand-accent/35 hover:opacity-95"
               >
                 Explore Our Services
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
