@@ -36,10 +36,7 @@ export function Navbar() {
     )
 
   const ctaClass = cn(
-    "inline-flex items-center justify-center rounded-full border-2 px-6 py-2 text-sm font-medium transition-all duration-500 ease-out sm:py-2.5",
-    scrolled
-      ? "border-primary/40 bg-white text-primary hover:border-primary/60 hover:bg-primary/5"
-      : "border-brand-accent/80 bg-white/0 text-brand-accent shadow-sm hover:border-brand-accent hover:bg-brand-accent/10"
+    "inline-flex items-center justify-center rounded-full bg-brand-accent px-6 py-2 text-sm font-semibold text-primary shadow-md transition-all duration-500 ease-out hover:opacity-95 sm:py-2.5"
   )
 
   return (
@@ -130,7 +127,7 @@ export function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
-                className="inline-flex w-full items-center justify-center rounded-full border-2 border-primary/35 bg-primary/5 px-6 py-3 text-sm font-medium text-primary transition-opacity hover:opacity-90"
+                className="inline-flex w-full items-center justify-center rounded-full bg-brand-accent px-6 py-3 text-sm font-semibold text-primary transition-opacity hover:opacity-90"
               >
                 Get in Touch
               </Link>
