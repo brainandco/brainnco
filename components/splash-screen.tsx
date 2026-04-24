@@ -174,7 +174,7 @@ export function SplashScreen({ onComplete, onShutterReady }: Props) {
         className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-primary"
         aria-hidden="true"
       >
-        <BrandLogo variant="onBlue" className="h-12 w-auto" priority />
+        <BrandLogo variant="onBlue" className="h-9 w-auto" priority />
         <p className="mt-6 text-sm text-primary-foreground/90">brain &amp; co.</p>
       </div>
     )
@@ -206,8 +206,8 @@ export function SplashScreen({ onComplete, onShutterReady }: Props) {
 
         <div className="absolute inset-0 z-20 grid h-full min-h-0 w-full place-content-center place-items-center overflow-hidden px-6 text-center">
           <div className="mx-auto w-full max-w-lg shrink-0 text-primary-foreground">
-            <div className="relative mx-auto h-12 w-[min(200px,75vw)] sm:h-16 sm:w-[min(220px,80vw)]">
-              <BrandLogo variant="onBlue" className="h-12 w-auto sm:h-14" priority />
+            <div className="relative mx-auto h-9 w-[min(180px,70vw)] sm:h-12 sm:w-[min(200px,75vw)]">
+              <BrandLogo variant="onBlue" className="h-9 w-auto sm:h-12" priority />
             </div>
 
             <div

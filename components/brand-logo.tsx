@@ -22,7 +22,7 @@ export function BrandLogo({ variant, className, priority }: BrandLogoProps) {
       alt="brain & co."
       width={200}
       height={56}
-      className={cn("h-8 w-auto sm:h-9", className)}
+      className={cn("h-7 w-auto sm:h-8", className)}
       priority={priority}
       unoptimized
     />

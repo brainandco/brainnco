@@ -60,7 +60,7 @@ export function Navbar() {
             variant={scrolled ? "onLight" : "onBlue"}
             className={cn(
               "w-auto transition-all duration-500 ease-out",
-              scrolled ? "h-7 sm:h-8" : "h-8 sm:h-10"
+              scrolled ? "h-6 sm:h-7" : "h-7 sm:h-8"
             )}
             priority
           />
