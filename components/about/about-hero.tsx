@@ -20,7 +20,7 @@ export function AboutHero() {
           </p>
           <h1
             className={cn(
-              "mt-4 font-serif text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl opacity-0",
+              "mt-4 font-serif text-4xl font-bold tracking-tight text-brand-accent sm:text-5xl lg:text-6xl opacity-0",
               isVisible && "animate-fade-up animation-delay-100"
             )}
           >

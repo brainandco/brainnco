@@ -58,7 +58,7 @@ export function FeaturedProjects() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Featured Work
               </p>
-              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
                 Projects that deliver results
               </h2>
             </div>
@@ -79,7 +79,7 @@ export function FeaturedProjects() {
         >
           <div
             className={cn(
-              "h-full bg-foreground/30 w-0",
+              "h-full bg-primary/30 w-0",
               lineVisible && "animate-draw-line"
             )}
           />
@@ -109,7 +109,7 @@ export function FeaturedProjects() {
                     {project.title}
                   </h3>
                   <div className="mt-3 flex items-center gap-2">
-                    <div className="h-1.5 w-1.5 rounded-full bg-foreground" />
+                    <div className="h-1.5 w-1.5 rounded-full bg-primary" />
                     <p className="text-sm font-medium text-foreground">
                       {project.result}
                     </p>

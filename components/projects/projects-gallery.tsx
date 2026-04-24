@@ -211,8 +211,8 @@ export function ProjectsGallery() {
                 className={cn(
                   "rounded-full px-5 py-2 text-sm font-medium transition-all duration-200",
                   activeCategory === cat
-                    ? "bg-foreground text-background"
-                    : "border border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                    ? "bg-primary text-primary-foreground"
+                    : "border border-border text-muted-foreground hover:border-primary/35 hover:text-primary"
                 )}
               >
                 {cat}
@@ -268,7 +268,7 @@ export function ProjectsGallery() {
       {/* Lightbox / Detail Modal */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/80 p-6 animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-primary/85 p-6 animate-fade-in"
           onClick={() => setSelectedProject(null)}
           role="dialog"
           aria-modal="true"
@@ -298,7 +298,7 @@ export function ProjectsGallery() {
               <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 {selectedProject.category}
               </span>
-              <h2 className="mt-2 font-serif text-2xl font-bold text-foreground sm:text-3xl">
+              <h2 className="mt-2 font-serif text-2xl font-bold text-brand-accent sm:text-3xl">
                 {selectedProject.title}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -315,7 +315,7 @@ export function ProjectsGallery() {
                       key={result}
                       className="flex items-center gap-2 text-sm text-muted-foreground"
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-foreground flex-shrink-0" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
                       {result}
                     </li>
                   ))}

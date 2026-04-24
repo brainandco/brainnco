@@ -31,7 +31,7 @@ function PostBody({ body }: { body: string }) {
           <p key={i} className="mb-4 text-muted-foreground leading-relaxed">
             {parts.map((part, j) =>
               part.startsWith("**") && part.endsWith("**") ? (
-                <strong key={j} className="font-semibold text-foreground">
+                <strong key={j} className="font-semibold text-primary">
                   {part.slice(2, -2)}
                 </strong>
               ) : (
@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="mx-auto max-w-3xl px-6 pt-32 pb-16 lg:pt-40 lg:pb-24">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Blog
@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
           <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
             {post.category}
           </span>
-          <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+          <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
             {post.title}
           </h1>
           <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
@@ -96,7 +96,7 @@ export default async function BlogPostPage({ params }: Props) {
         <footer className="mt-12 pt-8 border-t border-border">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:underline underline-offset-4"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline underline-offset-4"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Blog

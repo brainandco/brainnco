@@ -35,13 +35,13 @@ export function TestimonialsPreview() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Client Feedback
               </p>
-              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
                 Trusted by industry leaders
               </h2>
             </div>
             <Link
               href="/testimonials"
-              className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-opacity hover:opacity-70"
+              className="inline-flex items-center gap-1 text-sm font-medium text-primary transition-opacity hover:opacity-80"
             >
               All Testimonials
               <ArrowUpRight className="h-4 w-4" />
@@ -55,7 +55,7 @@ export function TestimonialsPreview() {
               key={t.author}
               delay={`animation-delay-${(i + 1) * 100}`}
             >
-              <div className="flex h-full flex-col justify-between rounded-2xl border border-border p-8 transition-all duration-300 hover:border-foreground/20 hover:shadow-lg">
+              <div className="flex h-full flex-col justify-between rounded-2xl border border-border p-8 transition-all duration-300 hover:border-primary/25 hover:shadow-lg">
                 <div>
                   <Quote className="h-5 w-5 text-muted-foreground/40" />
                   <p className="mt-4 text-sm leading-relaxed text-foreground">

@@ -129,7 +129,7 @@ export function ClientsSlider() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Client Stories
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl text-balance">
+            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl lg:text-5xl text-balance">
               What our clients say about us
             </h2>
           </div>
@@ -140,14 +140,14 @@ export function ClientsSlider() {
           {/* Navigation arrows */}
           <button
             onClick={goPrev}
-            className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 hidden lg:flex items-center justify-center h-12 w-12 rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:bg-foreground hover:text-background hover:border-foreground hover:scale-110"
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 hidden lg:flex items-center justify-center h-12 w-12 rounded-full border border-border bg-background text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-110"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
             onClick={goNext}
-            className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 hidden lg:flex items-center justify-center h-12 w-12 rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:bg-foreground hover:text-background hover:border-foreground hover:scale-110"
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 hidden lg:flex items-center justify-center h-12 w-12 rounded-full border border-border bg-background text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-110"
             aria-label="Next testimonial"
           >
             <ChevronRight className="h-5 w-5" />
@@ -157,7 +157,7 @@ export function ClientsSlider() {
           <div className="rounded-3xl border border-border overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-5">
               {/* Client photo & info */}
-              <div className="relative lg:col-span-2 bg-foreground text-background p-8 lg:p-12 flex flex-col justify-between min-h-[300px] lg:min-h-[500px]">
+              <div className="relative lg:col-span-2 bg-primary text-primary-foreground p-8 lg:p-12 flex flex-col justify-between min-h-[300px] lg:min-h-[500px]">
                 <div
                   key={`photo-${activeIndex}`}
                   className={cn(
@@ -167,7 +167,7 @@ export function ClientsSlider() {
                       : "animate-slide-in-right"
                   )}
                 >
-                  <div className="relative h-20 w-20 rounded-full overflow-hidden border-2 border-background/20">
+                  <div className="relative h-20 w-20 rounded-full overflow-hidden border-2 border-primary-foreground/25">
                     <Image
                       src={client.image}
                       alt={client.name}
@@ -176,16 +176,16 @@ export function ClientsSlider() {
                     />
                   </div>
                   <div className="mt-6">
-                    <h3 className="text-xl font-bold text-background font-serif">
+                    <h3 className="text-xl font-bold text-primary-foreground font-serif">
                       {client.name}
                     </h3>
-                    <p className="mt-1 text-sm text-background/70">
+                    <p className="mt-1 text-sm text-primary-foreground/70">
                       {client.role}
                     </p>
-                    <p className="text-sm font-medium text-background/90">
+                    <p className="text-sm font-medium text-primary-foreground/90">
                       {client.company}
                     </p>
-                    <span className="mt-3 inline-block rounded-full bg-background/10 px-3 py-1 text-xs text-background/60">
+                    <span className="mt-3 inline-block rounded-full bg-primary-foreground/10 px-3 py-1 text-xs text-primary-foreground/65">
                       {client.industry}
                     </span>
                   </div>
@@ -200,10 +200,10 @@ export function ClientsSlider() {
                       : "animate-fade-up animation-delay-200"
                   )}
                 >
-                  <p className="text-xs uppercase tracking-[0.15em] text-background/40">
+                  <p className="text-xs uppercase tracking-[0.15em] text-primary-foreground/45">
                     Key Result
                   </p>
-                  <p className="mt-1 text-lg font-bold text-background font-serif">
+                  <p className="mt-1 text-lg font-bold text-brand-accent font-serif">
                     {client.result}
                   </p>
                 </div>
@@ -227,7 +227,7 @@ export function ClientsSlider() {
                     {Array.from({ length: client.rating }).map((_, i) => (
                       <Star
                         key={i}
-                        className="h-4 w-4 fill-foreground text-foreground"
+                        className="h-4 w-4 fill-brand-accent text-brand-accent"
                       />
                     ))}
                   </div>
@@ -263,7 +263,7 @@ export function ClientsSlider() {
           <div className="mt-8 flex items-center justify-center gap-6">
             <button
               onClick={goPrev}
-              className="lg:hidden flex items-center justify-center h-10 w-10 rounded-full border border-border text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
+              className="lg:hidden flex items-center justify-center h-10 w-10 rounded-full border border-border text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -277,7 +277,7 @@ export function ClientsSlider() {
                   className={cn(
                     "transition-all duration-300 rounded-full",
                     i === activeIndex
-                      ? "h-2.5 w-8 bg-foreground"
+                      ? "h-2.5 w-8 bg-primary"
                       : "h-2.5 w-2.5 bg-border hover:bg-muted-foreground"
                   )}
                   aria-label={`Go to testimonial ${i + 1}`}
@@ -287,7 +287,7 @@ export function ClientsSlider() {
 
             <button
               onClick={goNext}
-              className="lg:hidden flex items-center justify-center h-10 w-10 rounded-full border border-border text-foreground transition-all duration-300 hover:bg-foreground hover:text-background"
+              className="lg:hidden flex items-center justify-center h-10 w-10 rounded-full border border-border text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
               aria-label="Next testimonial"
             >
               <ChevronRight className="h-4 w-4" />
@@ -304,8 +304,8 @@ export function ClientsSlider() {
                   className={cn(
                     "group flex items-center gap-3 rounded-full border px-4 py-2 transition-all duration-300",
                     i === activeIndex
-                      ? "border-foreground bg-foreground text-background"
-                      : "border-border hover:border-foreground/30"
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border hover:border-primary/30"
                   )}
                 >
                   <div className="relative h-7 w-7 rounded-full overflow-hidden flex-shrink-0">
@@ -320,8 +320,8 @@ export function ClientsSlider() {
                     className={cn(
                       "text-xs font-medium whitespace-nowrap hidden sm:block",
                       i === activeIndex
-                        ? "text-background"
-                        : "text-muted-foreground group-hover:text-foreground"
+                        ? "text-primary-foreground"
+                        : "text-muted-foreground group-hover:text-primary"
                     )}
                   >
                     {c.name}

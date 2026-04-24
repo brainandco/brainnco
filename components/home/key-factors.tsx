@@ -28,13 +28,13 @@ function AnimatedBar({
     <div ref={ref} className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-foreground">{label}</span>
-        <span className="text-sm font-bold text-foreground font-serif">
+        <span className="text-sm font-bold text-primary font-serif">
           {count}%
         </span>
       </div>
       <div className="h-1.5 w-full rounded-full bg-secondary overflow-hidden">
         <div
-          className="h-full rounded-full bg-foreground transition-all duration-1500 ease-out"
+          className="h-full rounded-full bg-primary transition-all duration-1500 ease-out"
           style={{ width: `${count}%` }}
         />
       </div>
@@ -114,7 +114,7 @@ export function KeyFactors() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Why brain & co.
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl text-balance">
+            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl lg:text-5xl text-balance">
               The key factors that set us apart
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -131,9 +131,9 @@ export function KeyFactors() {
               key={factor.title}
               delay={`animation-delay-${((i % 4) + 1) * 100}`}
             >
-              <div className="group rounded-2xl border border-border p-6 transition-all duration-400 hover:border-foreground/20 hover-lift h-full">
-                <div className="inline-flex items-center justify-center rounded-xl bg-secondary p-3 transition-colors duration-300 group-hover:bg-foreground">
-                  <factor.icon className="h-5 w-5 text-foreground transition-colors duration-300 group-hover:text-background" />
+              <div className="group rounded-2xl border border-border p-6 transition-all duration-400 hover:border-primary/25 hover-lift h-full">
+                <div className="inline-flex items-center justify-center rounded-xl bg-secondary p-3 transition-colors duration-300 group-hover:bg-primary">
+                  <factor.icon className="h-5 w-5 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
                 </div>
                 <h3 className="mt-4 text-base font-semibold text-foreground">
                   {factor.title}
@@ -150,7 +150,7 @@ export function KeyFactors() {
         <div ref={dividerRef} className="my-20 h-[1px] bg-border overflow-hidden">
           <div
             className={cn(
-              "h-full bg-foreground/30 w-0",
+              "h-full bg-primary/30 w-0",
               dividerVisible && "animate-draw-line"
             )}
           />
@@ -162,7 +162,7 @@ export function KeyFactors() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Core Competencies
             </p>
-            <h3 className="mt-3 font-serif text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-balance">
+            <h3 className="mt-3 font-serif text-2xl font-bold tracking-tight text-brand-accent sm:text-3xl text-balance">
               Deep expertise across every digital channel
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

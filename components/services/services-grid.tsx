@@ -97,8 +97,8 @@ export function ServicesGrid() {
                 className={cn(
                   "group relative cursor-pointer rounded-2xl border border-border p-8 transition-all duration-300",
                   expandedIndex === i
-                    ? "border-foreground/30 bg-foreground text-background shadow-xl"
-                    : "hover:border-foreground/20 hover:shadow-lg"
+                    ? "border-primary/40 bg-primary text-primary-foreground shadow-xl"
+                    : "hover:border-primary/25 hover:shadow-lg"
                 )}
                 onClick={() =>
                   setExpandedIndex(expandedIndex === i ? null : i)
@@ -116,7 +116,7 @@ export function ServicesGrid() {
                   className={cn(
                     "h-6 w-6 transition-colors",
                     expandedIndex === i
-                      ? "text-background"
+                      ? "text-primary-foreground"
                       : "text-foreground"
                   )}
                 />
@@ -124,7 +124,7 @@ export function ServicesGrid() {
                   className={cn(
                     "mt-4 text-lg font-semibold transition-colors",
                     expandedIndex === i
-                      ? "text-background"
+                      ? "text-primary-foreground"
                       : "text-foreground"
                   )}
                 >
@@ -134,14 +134,14 @@ export function ServicesGrid() {
                   className={cn(
                     "mt-2 text-sm transition-colors",
                     expandedIndex === i
-                      ? "text-background/70"
+                      ? "text-primary-foreground/80"
                       : "text-muted-foreground"
                   )}
                 >
                   {expandedIndex === i ? service.fullDesc : service.shortDesc}
                 </p>
                 {expandedIndex === i && (
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-background/60">
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-brand-accent/90">
                     {service.results}
                   </p>
                 )}

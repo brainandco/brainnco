@@ -47,7 +47,7 @@ export function Hero() {
       </div> */}
 
       {/* Main content – centered, wide spread, equal space both sides */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl flex-1 px-6 py-12 sm:py-16 lg:px-8 lg:py-20">
+      <div className="relative z-10 mx-auto w-full max-w-7xl flex-1 px-6 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:px-8 lg:pt-32 lg:pb-20">
         <div className="mx-auto w-full max-w-6xl text-center">
             <p
               className={cn(
@@ -58,10 +58,10 @@ export function Hero() {
             >
               Marketing without limits.
             </p>
-            <h1 className="mt-3 font-serif font-bold leading-[1.08] tracking-tight text-foreground">
+            <h1 className="mt-3 font-serif font-bold leading-[1.08] tracking-tight">
               <span
                 className={cn(
-                  "block text-4xl opacity-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl",
+                  "block text-4xl text-primary opacity-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl",
                   isVisible && "animate-hero-reveal-up"
                 )}
                 style={isVisible ? { animationDelay: "60ms", animationFillMode: "forwards" } : undefined}
@@ -70,7 +70,7 @@ export function Hero() {
               </span>
               <span
                 className={cn(
-                  "block text-5xl opacity-0 sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl",
+                  "block text-5xl text-brand-accent opacity-0 sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl",
                   isVisible && "animate-hero-reveal-up"
                 )}
                 style={isVisible ? { animationDelay: "180ms", animationFillMode: "forwards" } : undefined}
@@ -88,12 +88,12 @@ export function Hero() {
                   that{" "}
                 </span>
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-2xl font-bold text-foreground sm:text-3xl md:text-4xl lg:text-4xl">
+                  <span className="relative z-10 text-2xl font-bold text-primary sm:text-3xl md:text-4xl lg:text-4xl">
                     drive growth
                   </span>
                   <span
                     className={cn(
-                      "absolute -bottom-0.5 left-0 right-0 h-1.5 origin-left rounded-full bg-foreground/30 md:h-2",
+                      "absolute -bottom-0.5 left-0 right-0 h-1.5 origin-left rounded-full bg-brand-accent/50 md:h-2",
                       isVisible && "animate-hero-line"
                     )}
                     style={isVisible ? { animationDelay: "520ms", animationFillMode: "forwards" } : undefined}
@@ -119,7 +119,7 @@ export function Hero() {
             >
               <Link
                 href="/services"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm font-medium text-background shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl hover:opacity-95"
               >
                 Explore Our Services
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -139,7 +139,7 @@ export function Hero() {
         <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
           Scroll
         </span>
-        <div className="h-8 w-px bg-gradient-to-b from-foreground/25 to-transparent animate-float" />
+        <div className="h-8 w-px bg-gradient-to-b from-primary/35 to-transparent animate-float" />
       </div>
     </section>
   )

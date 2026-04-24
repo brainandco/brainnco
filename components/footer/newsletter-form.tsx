@@ -43,7 +43,7 @@ export function NewsletterForm() {
 
   if (success) {
     return (
-      <p className="text-sm text-background/80">
+      <p className="text-sm text-primary-foreground/85">
         Thanks for subscribing. We&apos;ll keep you updated.
       </p>
     )
@@ -60,7 +60,7 @@ export function NewsletterForm() {
             setError(null)
           }}
           placeholder="Enter your email"
-          className="min-w-0 flex-1 rounded-full border border-background/20 bg-transparent px-4 py-2.5 text-sm text-background placeholder:text-background/40 focus:outline-none focus:border-background/50"
+          className="min-w-0 flex-1 rounded-full border border-primary-foreground/25 bg-primary-foreground/5 px-4 py-2.5 text-sm text-primary-foreground placeholder:text-primary-foreground/45 focus:outline-none focus:border-brand-accent/80 focus:ring-1 focus:ring-brand-accent/40"
           aria-label="Email for newsletter"
           disabled={loading}
           autoComplete="email"
@@ -68,13 +68,13 @@ export function NewsletterForm() {
         <button
           type="submit"
           disabled={loading}
-          className="shrink-0 rounded-full bg-background text-foreground px-5 py-2.5 text-sm font-medium transition-opacity hover:opacity-80 disabled:opacity-60"
+          className="shrink-0 rounded-full bg-brand-accent px-5 py-2.5 text-sm font-semibold text-primary transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           {loading ? "Subscribing…" : "Subscribe"}
         </button>
       </form>
       {error && (
-        <p className="text-xs text-red-300" role="alert">
+        <p className="text-xs text-red-200" role="alert">
           {error}
         </p>
       )}

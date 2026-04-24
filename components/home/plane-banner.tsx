@@ -41,12 +41,10 @@ export function PlaneBanner() {
     <section className="relative border-y border-border bg-secondary/50 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="relative flex min-h-[380px] flex-col items-center justify-center">
-          {/* Plane + message area – always in document flow so section has height */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            {/* "Want to reach us?" – visible during plane-wait */}
             <p
               className={cn(
-                "absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-center text-xl font-semibold text-foreground transition-all duration-500 sm:text-2xl",
+                "absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-center text-xl font-semibold text-primary transition-all duration-500 sm:text-2xl",
                 phase === "plane-wait"
                   ? "opacity-100 scale-100"
                   : "opacity-0 scale-95 pointer-events-none"
@@ -55,21 +53,19 @@ export function PlaneBanner() {
               Want to reach us?
             </p>
 
-            {/* Plane icon – starts below center (from bottom), moves to center, then exits up */}
             <div
               className={cn(
-                "absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full border-2 border-foreground/20 bg-background shadow-lg transition-all duration-700 ease-out sm:h-20 sm:w-20",
+                "absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 items-center justify-center rounded-full border-2 border-primary/25 bg-background shadow-lg transition-all duration-700 ease-out sm:h-20 sm:w-20",
                 phase === "plane-enter" && "translate-y-[85%] opacity-100",
                 phase === "plane-wait" && "-translate-y-1/2 opacity-100",
                 phase === "plane-exit" && "-translate-y-[130%] opacity-70",
                 phase === "banner-show" && "-translate-y-[150%] opacity-0 pointer-events-none"
               )}
             >
-              <Plane className="h-7 w-7 text-foreground sm:h-8 sm:w-8" aria-hidden />
+              <Plane className="h-7 w-7 text-primary sm:h-8 sm:w-8" aria-hidden />
             </div>
           </div>
 
-          {/* Banner – slides up after plane exits; keep in DOM so layout is stable */}
           <div
             className={cn(
               "relative z-20 w-full max-w-4xl transition-all duration-700 ease-out",
@@ -78,8 +74,8 @@ export function PlaneBanner() {
                 : "translate-y-16 opacity-0 pointer-events-none"
             )}
           >
-            <div className="rounded-2xl border border-border bg-card p-8 shadow-xl shadow-foreground/5 sm:p-10 lg:p-12">
-              <p className="text-center font-serif text-2xl font-bold leading-snug text-foreground sm:text-3xl lg:text-4xl">
+            <div className="rounded-2xl border border-border bg-card p-8 shadow-xl shadow-primary/5 sm:p-10 lg:p-12">
+              <p className="text-center font-serif text-2xl font-bold leading-snug text-brand-accent sm:text-3xl lg:text-4xl">
                 Your next growth story starts with a conversation.
               </p>
               <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -89,7 +85,7 @@ export function PlaneBanner() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background shadow-md transition-all hover:scale-[1.02] hover:shadow-lg"
+                  className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-md transition-all hover:scale-[1.02] hover:shadow-lg hover:opacity-95"
                 >
                   <Mail className="h-4 w-4" />
                   Get in Touch
@@ -97,14 +93,14 @@ export function PlaneBanner() {
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/20 px-6 py-3.5 text-sm font-medium text-foreground transition-all hover:border-foreground/40 hover:bg-foreground/5"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-primary/25 px-6 py-3.5 text-sm font-medium text-foreground transition-all hover:border-primary/50 hover:bg-primary/5"
                 >
                   <MessageCircle className="h-4 w-4" />
                   Book a Call
                 </Link>
                 <a
                   href="mailto:contact@brainnco.com"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-foreground/20 px-6 py-3.5 text-sm font-medium text-foreground transition-all hover:border-foreground/40 hover:bg-foreground/5"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-primary/25 px-6 py-3.5 text-sm font-medium text-foreground transition-all hover:border-primary/50 hover:bg-primary/5"
                 >
                   <Phone className="h-4 w-4" />
                   Email Us

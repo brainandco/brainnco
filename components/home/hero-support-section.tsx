@@ -16,7 +16,7 @@ function StatItem({
   const { count, ref } = useCounterAnimation(target, 2000)
   return (
     <div ref={ref} className="text-center">
-      <p className="text-2xl font-bold font-serif tabular-nums text-foreground sm:text-3xl">
+      <p className="text-2xl font-bold font-serif tabular-nums text-brand-accent sm:text-3xl">
         {count}
         {suffix}
       </p>
@@ -68,8 +68,8 @@ export function HeroSupportSection() {
                 key={item.text}
                 className="flex items-center gap-3 text-sm text-foreground"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-foreground/10">
-                  <item.icon className="h-4 w-4 text-foreground" />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <item.icon className="h-4 w-4 text-primary" />
                 </span>
                 <span className="font-medium">{item.text}</span>
               </li>

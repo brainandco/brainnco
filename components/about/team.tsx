@@ -39,7 +39,7 @@ export function Team() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             Our Team
           </p>
-          <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+          <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
             Meet the people behind the strategy
           </h2>
         </AnimatedSection>

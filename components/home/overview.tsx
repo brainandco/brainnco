@@ -58,7 +58,7 @@ export function Overview() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Our Approach
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl text-balance">
+            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl lg:text-5xl text-balance">
               Built on four core pillars
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
@@ -70,7 +70,7 @@ export function Overview() {
           <div ref={lineRef} className="mt-8 h-[1px] bg-border overflow-hidden">
             <div
               className={cn(
-                "h-full bg-foreground w-0",
+                "h-full bg-primary w-0",
                 lineVisible && "animate-draw-line"
               )}
             />
@@ -84,26 +84,26 @@ export function Overview() {
               key={pillar.title}
               delay={`animation-delay-${(i + 1) * 100}`}
             >
-              <div className="group relative rounded-2xl border border-border p-8 transition-all duration-500 hover:border-foreground/20 hover-lift overflow-hidden">
+              <div className="group relative rounded-2xl border border-border p-8 transition-all duration-500 hover:border-primary/25 hover-lift overflow-hidden">
                 {/* Hover background fill */}
-                <div className="absolute inset-0 bg-foreground opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-primary opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between">
-                    <pillar.icon className="h-6 w-6 text-foreground transition-colors duration-500 group-hover:text-background" />
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:text-background" />
+                    <pillar.icon className="h-6 w-6 text-primary transition-colors duration-500 group-hover:text-primary-foreground" />
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:text-primary-foreground" />
                   </div>
-                  <h3 className="mt-6 text-lg font-semibold text-foreground transition-colors duration-500 group-hover:text-background">
+                  <h3 className="mt-6 text-lg font-semibold text-foreground transition-colors duration-500 group-hover:text-primary-foreground">
                     {pillar.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-background/70">
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-primary-foreground/80">
                     {pillar.description}
                   </p>
-                  <div className="mt-6 border-t border-border pt-4 transition-colors duration-500 group-hover:border-background/20">
-                    <p className="text-2xl font-bold font-serif text-foreground transition-colors duration-500 group-hover:text-background">
+                  <div className="mt-6 border-t border-border pt-4 transition-colors duration-500 group-hover:border-primary-foreground/25">
+                    <p className="text-2xl font-bold font-serif text-brand-accent transition-colors duration-500 group-hover:text-primary-foreground">
                       {pillar.metric}
                     </p>
-                    <p className="text-xs text-muted-foreground transition-colors duration-500 group-hover:text-background/60">
+                    <p className="text-xs text-muted-foreground transition-colors duration-500 group-hover:text-primary-foreground/60">
                       {pillar.metricLabel}
                     </p>
                   </div>

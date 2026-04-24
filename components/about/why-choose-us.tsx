@@ -23,7 +23,7 @@ export function WhyChooseUs() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Why brain & co.
               </p>
-              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
                 Why industry leaders choose us
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
@@ -32,7 +32,7 @@ export function WhyChooseUs() {
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-8 py-3.5 text-sm font-medium transition-transform hover:scale-105"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-105 hover:opacity-95"
                 >
                   Work With Us
                   <ArrowRight className="h-4 w-4" />
@@ -46,9 +46,9 @@ export function WhyChooseUs() {
               {reasons.map((reason) => (
                 <div
                   key={reason}
-                  className="flex items-start gap-3 rounded-xl border border-border p-4 transition-all duration-300 hover:border-foreground/20"
+                  className="flex items-start gap-3 rounded-xl border border-border p-4 transition-all duration-300 hover:border-primary/25"
                 >
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-foreground" />
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                   <p className="text-sm leading-relaxed text-foreground">
                     {reason}
                   </p>

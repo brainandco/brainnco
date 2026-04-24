@@ -37,7 +37,7 @@ export function ProcessSection() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             Our Process
           </p>
-          <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+          <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
             How we deliver results
           </h2>
         </AnimatedSection>
@@ -49,10 +49,10 @@ export function ProcessSection() {
               delay={`animation-delay-${(i + 1) * 100}`}
             >
               <div className="relative rounded-2xl border border-border bg-background p-8">
-                <span className="font-serif text-5xl font-bold text-border">
+                <span className="font-serif text-5xl font-bold text-primary/15">
                   {step.number}
                 </span>
-                <h3 className="mt-4 text-lg font-semibold text-foreground">
+                <h3 className="mt-4 text-lg font-semibold text-primary">
                   {step.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">

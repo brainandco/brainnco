@@ -129,18 +129,18 @@ const awards = [
 
 export function IndustryExpertise() {
   return (
-    <section className="py-24 lg:py-32 bg-foreground text-background">
+    <section className="py-24 lg:py-32 bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Deep vertical knowledge – full width */}
         <div>
           <AnimatedSection>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-background/50">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
               Industry Expertise
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-background sm:text-4xl text-balance">
+            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
               Deep vertical knowledge
             </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-background/60">
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/70">
               We specialize in industries where complex buying cycles and
               technical audiences require nuanced marketing approaches.
             </p>
@@ -152,12 +152,12 @@ export function IndustryExpertise() {
                 key={industry.name}
                 delay={`animation-delay-${((i % 4) + 1) * 100}`}
               >
-                <div className="group flex items-center gap-4 rounded-xl border border-background/10 p-4 transition-all duration-300 hover:bg-background/5 hover:border-background/20">
-                  <div className="flex-shrink-0 rounded-lg bg-background/10 p-2.5 transition-colors duration-300 group-hover:bg-background/20">
-                    <industry.icon className="h-5 w-5 text-background/80" />
+                <div className="group flex items-center gap-4 rounded-xl border border-primary-foreground/15 p-4 transition-all duration-300 hover:bg-primary-foreground/5 hover:border-primary-foreground/25">
+                  <div className="flex-shrink-0 rounded-lg bg-primary-foreground/10 p-2.5 transition-colors duration-300 group-hover:bg-primary-foreground/15">
+                    <industry.icon className="h-5 w-5 text-primary-foreground/85" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-background">
+                    <p className="text-sm font-semibold text-primary-foreground">
                       {industry.name}
                     </p>
                     {/* <p className="text-xs text-background/50">

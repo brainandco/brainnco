@@ -34,8 +34,8 @@ export function BlogGrid() {
                 className={cn(
                   "rounded-full px-5 py-2 text-sm font-medium transition-all duration-200",
                   activeCategory === cat
-                    ? "bg-foreground text-background"
-                    : "border border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                    ? "bg-primary text-primary-foreground"
+                    : "border border-border text-muted-foreground hover:border-primary/35 hover:text-primary"
                 )}
               >
                 {cat}
@@ -76,13 +76,13 @@ export function BlogGrid() {
                           {post.readTime}
                         </span>
                       </div>
-                      <h2 className="mt-3 font-serif text-xl font-bold text-foreground group-hover:underline underline-offset-4 sm:text-2xl text-balance">
+                      <h2 className="mt-3 font-serif text-xl font-bold text-primary group-hover:underline underline-offset-4 sm:text-2xl text-balance">
                         {post.title}
                       </h2>
                       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                         {post.excerpt}
                       </p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-foreground">
+                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
                         Read Article
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </span>
@@ -124,7 +124,7 @@ export function BlogGrid() {
                           {post.readTime}
                         </span>
                       </div>
-                      <h3 className="mt-2 text-base font-semibold text-foreground group-hover:underline underline-offset-4 text-balance">
+                      <h3 className="mt-2 text-base font-semibold text-primary group-hover:underline underline-offset-4 text-balance">
                         {post.title}
                       </h3>
                       <p className="mt-2 text-sm text-muted-foreground line-clamp-2">

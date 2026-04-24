@@ -33,7 +33,7 @@ export function Partners() {
                 key={`${partner}-${i}`}
                 className="flex-shrink-0 px-8 lg:px-12"
               >
-                <span className="text-lg font-semibold text-muted-foreground/40 whitespace-nowrap tracking-wide transition-colors duration-300 hover:text-foreground cursor-default">
+                <span className="text-lg font-semibold text-muted-foreground/40 whitespace-nowrap tracking-wide transition-colors duration-300 hover:text-primary cursor-default">
                   {partner}
                 </span>
               </div>

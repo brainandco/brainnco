@@ -34,7 +34,7 @@ export function Mission() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Our Mission
               </p>
-              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
+              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
                 Empowering businesses through intelligent marketing
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
@@ -51,13 +51,13 @@ export function Mission() {
               {values.map((value) => (
                 <div
                   key={value.title}
-                  className="flex gap-4 rounded-2xl border border-border p-6 transition-all duration-300 hover:border-foreground/20"
+                  className="flex gap-4 rounded-2xl border border-border p-6 transition-all duration-300 hover:border-primary/25"
                 >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-foreground">
-                    <value.icon className="h-5 w-5 text-background" />
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary">
+                    <value.icon className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <div>
-                    <h3 className="text-base font-semibold text-foreground">
+                    <h3 className="text-base font-semibold text-primary">
                       {value.title}
                     </h3>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
