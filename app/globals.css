@@ -379,6 +379,52 @@
   animation-play-state: paused;
 }
 
+/* Splash screen: white curtain from left; logo intro */
+@keyframes splash-curtain {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Linear: 50% of time = 50% of travel, so JS can sync logo swap to exact mid-wipe */
+.animate-splash-curtain {
+  animation: splash-curtain 1.2s linear forwards;
+}
+
+/* Logo split on splash: clip-paths updated per frame from JS (sync to curtain’s right edge) */
+
+@keyframes splash-logo-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-splash-logo-breathe {
+  animation: splash-logo-breathe 2s ease-in-out 0.1s 1;
+}
+
+@keyframes splash-sheen {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-splash-sheen {
+  animation: splash-sheen 3.5s ease-in-out 1;
+}
+
 /* Splash screen animations */
 @keyframes splash-word-in {
   from {
