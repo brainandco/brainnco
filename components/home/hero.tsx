@@ -70,7 +70,7 @@ export function Hero() {
               </span>
               <span
                 className={cn(
-                  "block text-5xl text-brand-highlight opacity-0 sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl",
+                  "block text-5xl text-brand-accent opacity-0 sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl",
                   isVisible && "animate-hero-reveal-up"
                 )}
                 style={isVisible ? { animationDelay: "180ms", animationFillMode: "forwards" } : undefined}
