@@ -1,33 +1,47 @@
 "use client"
 
-import { useEffect, useState, useRef, useLayoutEffect } from "react"
+import { useCallback, useEffect, useState, useRef } from "react"
 import { BrandLogo } from "@/components/brand-logo"
 import { cn } from "@/lib/utils"
+import { ChevronUp, GripHorizontal } from "lucide-react"
 
-const WIPE_START_MS = 2000
-const WIPE_DURATION_MS = 1200
 const BLUE_SVG = "/images/SVG/Blue.svg"
-const WHITE_SVG = "/images/SVG/White.svg"
-const HOLD_MS = 400
-const FADE_OUT_MS = 600
+const WHEEL_DAMP = 0.6
+const DISMISS_WHEEL = 0.12
+const DISMISS_TOUCH = 0.15
+
+type Phase = "shutterReady" | "dismissing"
 
 type Props = {
   onComplete: () => void
+  onShutterReady?: () => void
 }
 
-export function SplashScreen({ onComplete }: Props) {
+function clampY(y: number) {
+  if (typeof window === "undefined") return y
+  return Math.max(-window.innerHeight, Math.min(0, y))
+}
+
+export function SplashScreen({ onComplete, onShutterReady }: Props) {
   const [reducedMotion, setReducedMotion] = useState(false)
-  const [wipeActive, setWipeActive] = useState(false)
-  const [contentOnLight, setContentOnLight] = useState(false)
-  const [isExiting, setIsExiting] = useState(false)
+  const [phase, setPhase] = useState<Phase>("shutterReady")
+  const [yDrag, setYDrag] = useState(0)
+
+  const phaseRef = useRef<Phase>("shutterReady")
+  phaseRef.current = phase
+  const yDragRef = useRef(0)
+  yDragRef.current = yDrag
+
   const onCompleteRef = useRef(onComplete)
   onCompleteRef.current = onComplete
+  const onShutterReadyRef = useRef(onShutterReady)
+  onShutterReadyRef.current = onShutterReady
 
-  const curtainRef = useRef<HTMLDivElement>(null)
-  const logoWrapRef = useRef<HTMLDivElement>(null)
-  const onLightLayerRef = useRef<HTMLDivElement>(null)
-  const onBlueLayerRef = useRef<HTMLDivElement>(null)
-  const contentFlippedRef = useRef(false)
+  const layerRef = useRef<HTMLDivElement>(null)
+  const onCompleteOnceRef = useRef(false)
+  const touchStartRef = useRef<{ y0: number; yDrag0: number } | null>(null)
+  const touchingRef = useRef(false)
+  const [snapWithTransition, setSnapWithTransition] = useState(false)
 
   useEffect(() => {
     setReducedMotion(
@@ -39,113 +53,120 @@ export function SplashScreen({ onComplete }: Props) {
   useEffect(() => {
     if (reducedMotion) return
     const a = new window.Image()
-    a.src = WHITE_SVG
-    const b = new window.Image()
-    b.src = BLUE_SVG
+    a.src = BLUE_SVG
   }, [reducedMotion])
 
-  useLayoutEffect(() => {
-    if (reducedMotion) {
-      const t = setTimeout(() => onCompleteRef.current(), 1200)
-      return () => clearTimeout(t)
+  const shutterNotified = useRef(false)
+  useEffect(() => {
+    if (!shutterNotified.current) {
+      shutterNotified.current = true
+      onShutterReadyRef.current?.()
     }
+  }, [])
 
-    const tWipe = setTimeout(() => setWipeActive(true), WIPE_START_MS)
-    const tExit = setTimeout(
-      () => setIsExiting(true),
-      WIPE_START_MS + WIPE_DURATION_MS + HOLD_MS
-    )
-    const tDone = setTimeout(
-      () => onCompleteRef.current(),
-      WIPE_START_MS + WIPE_DURATION_MS + HOLD_MS + FADE_OUT_MS
-    )
+  const startDismiss = useCallback(() => {
+    if (phaseRef.current === "dismissing" || onCompleteOnceRef.current) return
+    const h = typeof window !== "undefined" ? window.innerHeight : 800
+    setSnapWithTransition(false)
+    yDragRef.current = -h
+    setYDrag(-h)
+    setPhase("dismissing")
+  }, [])
 
-    return () => {
-      clearTimeout(tWipe)
-      clearTimeout(tExit)
-      clearTimeout(tDone)
+  useEffect(() => {
+    if (onCompleteOnceRef.current) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return
+      if (phaseRef.current !== "shutterReady") return
+      e.preventDefault()
+      startDismiss()
     }
-  }, [reducedMotion])
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [startDismiss])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (reducedMotion) return
+    if (phase !== "shutterReady" && phase !== "dismissing") return
+    const el = layerRef.current
+    if (!el) return
 
-    const onLight = onLightLayerRef.current
-    const onBlue = onBlueLayerRef.current
-    if (!onLight || !onBlue) return
-
-    if (!wipeActive) {
-      onLight.style.clipPath = "inset(0 100% 0 0)"
-      onBlue.style.clipPath = "none"
-      return
+    const onWheel = (e: WheelEvent) => {
+      if (phaseRef.current !== "shutterReady" || onCompleteOnceRef.current) return
+      e.preventDefault()
+      e.stopPropagation()
+      const h = window.innerHeight
+      const t = -DISMISS_WHEEL * h
+      const next = clampY(yDragRef.current - e.deltaY * WHEEL_DAMP)
+      if (next < t) {
+        startDismiss()
+        return
+      }
+      yDragRef.current = next
+      setYDrag(next)
     }
 
-    if (!curtainRef.current || !logoWrapRef.current) return
-
-    contentFlippedRef.current = false
-    setContentOnLight(false)
-
-    let raf = 0
-    let done = false
-    const t0 = performance.now()
-
-    const applyClips = () => {
-      const Lel = onLightLayerRef.current
-      const Bel = onBlueLayerRef.current
-      const c = curtainRef.current
-      const wr = logoWrapRef.current
-      if (!Lel || !Bel || !c || !wr) return
-      const edge = c.getBoundingClientRect().right
-      const b = Math.min(
-        document.documentElement.clientWidth,
-        typeof window !== "undefined" ? window.innerWidth : 0
-      ) || 1
-      const wrect = wr.getBoundingClientRect()
-      const l = wrect.left
-      const r = wrect.right
-      const w = r - l
-      let frac = 0
-      if (w > 0) {
-        frac = Math.max(0, Math.min(1, (Math.min(edge, r) - l) / w))
-      }
-      const p = `${(frac * 100).toFixed(3)}%`
-      Lel.style.clipPath = `polygon(0% 0, ${p} 0, ${p} 100%, 0% 100%)`
-      Bel.style.clipPath = `polygon(${p} 0, 100% 0, 100% 100%, ${p} 100%)`
-
-      if (frac >= 0.5 && !contentFlippedRef.current) {
-        contentFlippedRef.current = true
-        setContentOnLight(true)
-      }
-
-      const byGeom = edge >= b - 1.5
-      const byTime = performance.now() - t0 > WIPE_DURATION_MS + 80
-      if (byGeom || byTime) {
-        Lel.style.clipPath = "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)"
-        Bel.style.clipPath =
-          "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)"
-        if (!contentFlippedRef.current) {
-          contentFlippedRef.current = true
-          setContentOnLight(true)
-        }
-        done = true
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return
+      if (phaseRef.current !== "shutterReady") return
+      setSnapWithTransition(false)
+      touchingRef.current = true
+      touchStartRef.current = {
+        y0: e.touches[0].clientY,
+        yDrag0: yDragRef.current,
       }
     }
 
-    const tick = () => {
-      if (done) return
-      applyClips()
-      if (done) return
-      raf = requestAnimationFrame(tick)
+    const onTouchMove = (e: TouchEvent) => {
+      if (!touchingRef.current || e.touches.length !== 1) return
+      e.preventDefault()
+      if (phaseRef.current !== "shutterReady") return
+      const t0 = touchStartRef.current
+      if (!t0) return
+      const d = e.touches[0].clientY - t0.y0
+      const next = clampY(t0.yDrag0 + d)
+      yDragRef.current = next
+      setYDrag(next)
     }
 
-    applyClips()
-    raf = requestAnimationFrame(tick)
+    const onTouchEnd = () => {
+      if (!touchingRef.current) return
+      touchingRef.current = false
+      touchStartRef.current = null
+      const h = window.innerHeight
+      const t = -DISMISS_TOUCH * h
+      const y = yDragRef.current
+      if (y < t) {
+        startDismiss()
+        return
+      }
+      setSnapWithTransition(true)
+      yDragRef.current = 0
+      setYDrag(0)
+      window.setTimeout(() => setSnapWithTransition(false), 320)
+    }
 
+    el.addEventListener("wheel", onWheel, { passive: false })
+    el.addEventListener("touchstart", onTouchStart, { passive: true })
+    el.addEventListener("touchmove", onTouchMove, { passive: false })
+    el.addEventListener("touchend", onTouchEnd)
+    el.addEventListener("touchcancel", onTouchEnd)
     return () => {
-      done = true
-      cancelAnimationFrame(raf)
+      el.removeEventListener("wheel", onWheel)
+      el.removeEventListener("touchstart", onTouchStart)
+      el.removeEventListener("touchmove", onTouchMove)
+      el.removeEventListener("touchend", onTouchEnd)
+      el.removeEventListener("touchcancel", onTouchEnd)
     }
-  }, [wipeActive, reducedMotion])
+  }, [phase, reducedMotion, startDismiss])
+
+  const onTranslateEnd = (e: React.TransitionEvent) => {
+    if (e.propertyName !== "transform" || e.target !== layerRef.current) return
+    if (phaseRef.current !== "dismissing") return
+    if (onCompleteOnceRef.current) return
+    onCompleteOnceRef.current = true
+    onCompleteRef.current()
+  }
 
   if (reducedMotion) {
     return (
@@ -159,126 +180,89 @@ export function SplashScreen({ onComplete }: Props) {
     )
   }
 
+  const canInteract = phase === "shutterReady" || phase === "dismissing"
   return (
     <div
-      className={cn(
-        "splash-screen fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden",
-        "transition-opacity ease-out",
-        isExiting ? "pointer-events-none opacity-0" : "opacity-100"
-      )}
-      style={{ transitionDuration: `${FADE_OUT_MS}ms` }}
-      aria-hidden="true"
+      className="pointer-events-auto fixed inset-0 z-[100] overflow-hidden"
+      style={{ touchAction: canInteract ? "none" : "auto" }}
     >
-      <div className="absolute inset-0 z-0 bg-primary" />
       <div
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-br from-primary-foreground/12 via-transparent to-primary-foreground/5 animate-splash-sheen"
-        aria-hidden
-      />
-
-      <div
-        ref={curtainRef}
+        ref={layerRef}
         className={cn(
-          "absolute inset-0 z-10 bg-background will-change-transform",
-          !wipeActive && "-translate-x-full",
-          wipeActive && "animate-splash-curtain"
+          "relative h-[100dvh] w-full",
+          phase === "dismissing" && "duration-500 ease-out transition-transform",
+          snapWithTransition && "duration-300 ease-out transition-transform"
         )}
-        style={{ backfaceVisibility: "hidden" }}
-      />
-
-      <div className="relative z-20 flex max-w-lg flex-col items-center px-6 text-center">
+        style={{
+          transform: `translate3d(0, ${yDrag}px, 0)`,
+        }}
+        onTransitionEnd={onTranslateEnd}
+      >
+        <div className="absolute inset-0 z-0 bg-primary" />
         <div
-          ref={logoWrapRef}
-          className="relative h-12 w-[min(200px,75vw)] sm:h-16 sm:w-[min(220px,80vw)]"
-        >
-          <div
-            ref={onBlueLayerRef}
-            className="absolute inset-0 flex items-center justify-center [will-change:clip-path]"
-          >
-            <BrandLogo
-              variant="onBlue"
-              className="h-12 w-auto sm:h-14"
-              priority
-            />
-          </div>
-          <div
-            ref={onLightLayerRef}
-            className="absolute inset-0 z-[1] flex items-center justify-center [will-change:clip-path]"
-          >
-            <BrandLogo
-              variant="onLight"
-              className="h-12 w-auto sm:h-14"
-              priority
-            />
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-br from-primary-foreground/12 via-transparent to-primary-foreground/5 animate-splash-sheen"
+          aria-hidden
+        />
+
+        <div className="absolute inset-0 z-20 grid h-full min-h-0 w-full place-content-center place-items-center overflow-hidden px-6 text-center">
+          <div className="mx-auto w-full max-w-lg shrink-0 text-primary-foreground">
+            <div className="relative mx-auto h-12 w-[min(200px,75vw)] sm:h-16 sm:w-[min(220px,80vw)]">
+              <BrandLogo variant="onBlue" className="h-12 w-auto sm:h-14" priority />
+            </div>
+
+            <div
+              className={cn("mt-8 w-full max-w-md space-y-3 sm:mt-10", "text-primary-foreground")}
+            >
+              <div
+                className="flex w-full items-center justify-center gap-2 opacity-0 sm:gap-3 animate-fade-up"
+                style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+              >
+                <span className="h-px w-8 bg-primary-foreground/25 sm:w-10" />
+                <div className="inline-flex min-w-0 max-w-full items-baseline justify-center gap-0">
+                  <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-foreground/85 sm:text-lg">
+                    Marketing
+                  </span>
+                  <h2
+                    className="m-0 inline font-serif text-2xl font-bold leading-tight tracking-tight opacity-0 sm:text-3xl animate-fade-up"
+                    style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
+                  >
+                    <span>Without</span>{" "}
+                    <span className="text-brand-accent">Limits</span>
+                  </h2>
+                </div>
+                <span className="h-px w-8 bg-primary-foreground/25 sm:w-10" />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div
-          className={cn(
-            "mt-8 space-y-3 sm:mt-10",
-            "transition-[color,opacity] duration-300",
-            contentOnLight ? "text-primary" : "text-primary-foreground"
-          )}
-        >
-          <p
-            className="opacity-0 text-[9px] font-medium uppercase tracking-[0.3em] sm:text-[10px] animate-fade-up"
-            style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
-          >
-            Strategy · Creative · Data · Growth
-          </p>
+        {canInteract && (
           <div
-            className="flex items-center justify-center gap-2 opacity-0 sm:gap-3 animate-fade-up"
-            style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-50 flex w-full items-center justify-center"
+            role="group"
+            aria-label="Open site"
           >
-            <span
-              className={cn(
-                "h-px w-8 sm:w-10",
-                contentOnLight ? "bg-primary/20" : "bg-primary-foreground/25"
-              )}
-            />
-            <span
-              className={cn(
-                "text-[10px] font-semibold uppercase tracking-[0.2em] sm:text-xs",
-                !contentOnLight && "text-primary-foreground/85",
-                contentOnLight && "text-primary/50"
-              )}
+            <div
+              className="mb-[max(1.5rem,env(safe-area-inset-bottom))] flex w-full max-w-sm flex-col items-center justify-center gap-2 rounded-t-2xl border-t border-x border-primary-foreground/20 bg-primary-foreground/5 px-6 py-4 text-center backdrop-blur-sm sm:mb-0 sm:max-w-md sm:px-8"
             >
-              Marketing
-            </span>
-            <span
-              className={cn(
-                "h-px w-8 sm:w-10",
-                contentOnLight ? "bg-primary/20" : "bg-primary-foreground/25"
-              )}
-            />
+              <GripHorizontal
+                className="h-5 w-5 text-primary-foreground/50"
+                strokeWidth={1.5}
+                aria-hidden
+              />
+              <div className="flex flex-col items-center gap-1.5 text-primary-foreground">
+                <ChevronUp
+                  className="h-6 w-6 text-primary-foreground/80"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+                <p className="w-full text-center text-xs font-medium leading-relaxed text-primary-foreground/80 sm:text-sm">
+                  Swipe or scroll up
+                </p>
+              </div>
+            </div>
           </div>
-          <h2
-            className="font-serif text-2xl font-bold leading-tight tracking-tight opacity-0 sm:text-3xl animate-fade-up"
-            style={{ animationDelay: "0.55s", animationFillMode: "forwards" }}
-          >
-            <span
-              className={cn(
-                !contentOnLight ? "text-primary-foreground" : "text-primary"
-              )}
-            >
-              Without
-            </span>{" "}
-            <span className="text-brand-accent">
-              Limits
-            </span>
-          </h2>
-          <p
-            className={cn(
-              "max-w-sm text-xs font-normal leading-relaxed opacity-0 sm:text-sm animate-fade-up",
-              !contentOnLight
-                ? "text-primary-foreground/60"
-                : "text-muted-foreground"
-            )}
-            style={{ animationDelay: "0.75s", animationFillMode: "forwards" }}
-          >
-            Building brands that move business forward — with clarity, courage,
-            and measurable results.
-          </p>
-        </div>
+        )}
       </div>
     </div>
   )

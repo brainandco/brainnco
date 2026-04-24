@@ -11,20 +11,33 @@ type Props = {
 export function SplashAndTransition({ children }: Props) {
   const pathname = usePathname()
   const [showSplash, setShowSplash] = useState(true)
+  const [underlayVisible, setUnderlayVisible] = useState(false)
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false)
   }, [])
 
+  const handleShutterReady = useCallback(() => {
+    setUnderlayVisible(true)
+  }, [])
+
+  const pageVisible = !showSplash || underlayVisible
+
   return (
     <>
       {showSplash && (
-        <SplashScreen onComplete={handleSplashComplete} />
+        <SplashScreen
+          onComplete={handleSplashComplete}
+          onShutterReady={handleShutterReady}
+        />
       )}
       <div
         key={pathname}
         className="min-h-screen transition-opacity duration-500 ease-out animate-page-in"
-        style={{ opacity: showSplash ? 0 : 1, pointerEvents: showSplash ? "none" : "auto" }}
+        style={{
+          opacity: pageVisible ? 1 : 0,
+          pointerEvents: showSplash ? "none" : "auto",
+        }}
       >
         {children}
       </div>
