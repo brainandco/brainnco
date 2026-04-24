@@ -59,8 +59,8 @@ export function Overview() {
               Our Approach
             </p>
             <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-primary sm:text-4xl lg:text-5xl text-balance">
-              Built on{" "}
-              <span className="text-brand-highlight">four core pillars</span>
+              Built on four core pillars
+              {/* <span className="text-brand-highlight">four core pillars</span> */}
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
               Every strategy we craft is built on a proven framework that

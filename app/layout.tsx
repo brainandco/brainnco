@@ -28,6 +28,10 @@ export const metadata: Metadata = {
     "content marketing",
     "digital marketing",
   ],
+  icons: {
+    icon: [{ url: "/images/favicon-b.png", type: "image/png" }],
+    apple: [{ url: "/images/favicon-b.png", type: "image/png" }],
+  },
 }
 
 export const viewport: Viewport = {
