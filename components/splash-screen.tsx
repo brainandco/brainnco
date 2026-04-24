@@ -214,23 +214,26 @@ export function SplashScreen({ onComplete, onShutterReady }: Props) {
               className={cn("mt-8 w-full max-w-md space-y-3 sm:mt-10", "text-primary-foreground")}
             >
               <div
-                className="flex w-full items-center justify-center gap-2 opacity-0 sm:gap-3 animate-fade-up"
+                className="flex w-full max-w-full items-center justify-center gap-2.5 opacity-0 sm:gap-3.5 animate-fade-up"
                 style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
               >
-                <span className="h-px w-8 bg-primary-foreground/25 sm:w-10" />
-                <div className="inline-flex min-w-0 max-w-full items-baseline justify-center gap-0">
-                  <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-foreground/85 sm:text-lg">
+                <span
+                  className="h-px w-7 shrink-0 bg-primary-foreground/25 sm:w-9"
+                  aria-hidden
+                />
+                <h2
+                  className="m-0 flex min-w-0 flex-wrap items-baseline justify-center gap-x-2.5 gap-y-0.5 text-center font-serif text-lg font-bold leading-tight sm:gap-x-1.5 sm:text-2xl"
+                >
+                  <span className="shrink-0 uppercase text-primary-foreground/90">
                     Marketing
                   </span>
-                  <h2
-                    className="m-0 inline font-serif text-2xl font-bold leading-tight tracking-tight opacity-0 sm:text-3xl animate-fade-up"
-                    style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
-                  >
-                    <span>Without</span>{" "}
-                    <span className="text-brand-accent">Limits</span>
-                  </h2>
-                </div>
-                <span className="h-px w-8 bg-primary-foreground/25 sm:w-10" />
+                  <span className="shrink-0 uppercase text-primary-foreground">Without</span>
+                  <span className="shrink-0 text-brand-accent uppercase">Limits</span>
+                </h2>
+                <span
+                  className="h-px w-7 shrink-0 bg-primary-foreground/25 sm:w-9"
+                  aria-hidden
+                />
               </div>
             </div>
           </div>
