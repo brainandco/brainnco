@@ -35,7 +35,7 @@ export function TestimonialsPreview() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Client Feedback
               </p>
-              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
+              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-primary sm:text-4xl text-balance">
                 Trusted by industry leaders
               </h2>
             </div>

@@ -137,7 +137,7 @@ export function IndustryExpertise() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
               Industry Expertise
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
+            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance">
               Deep vertical knowledge
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-primary-foreground/70">

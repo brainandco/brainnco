@@ -38,7 +38,7 @@ export function SplashScreen({ onComplete }: Props) {
       <div className="flex flex-col items-center text-center px-6">
         <BrandLogo variant="onBlue" className="h-12 w-auto sm:h-14" priority />
         <p
-          className="mt-8 max-w-sm text-sm font-medium uppercase tracking-[0.2em] text-brand-accent opacity-0 sm:text-base animate-fade-up"
+          className="mt-8 max-w-sm text-sm font-medium uppercase tracking-[0.2em] text-primary-foreground/90 opacity-0 sm:text-base animate-fade-up"
           style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
         >
           Marketing Without Limits

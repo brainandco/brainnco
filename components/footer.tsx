@@ -22,9 +22,9 @@ const footerLinks = {
 }
 
 const linkClass =
-  "group inline-flex items-center gap-1 text-sm text-primary-foreground/80 transition-colors hover:text-brand-accent"
+  "group inline-flex items-center gap-1 text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground"
 
-const headingClass = "text-xs font-semibold uppercase tracking-widest text-brand-accent/90 mb-4"
+const headingClass = "text-xs font-semibold uppercase tracking-widest text-primary-foreground/90 mb-4"
 
 export function Footer() {
   return (
@@ -41,7 +41,7 @@ export function Footer() {
               <span className="whitespace-nowrap">Strategy, creativity, and results—no fluff.</span>
             </p>
             <div className="mt-8 min-w-0 max-w-sm">
-              <p className="text-sm font-medium text-brand-accent mb-3">Stay Updated</p>
+              <p className="text-sm font-medium text-primary-foreground mb-3">Stay Updated</p>
               <NewsletterForm />
             </div>
           </div>

@@ -298,7 +298,7 @@ export function ProjectsGallery() {
               <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 {selectedProject.category}
               </span>
-              <h2 className="mt-2 font-serif text-2xl font-bold text-brand-accent sm:text-3xl">
+              <h2 className="mt-2 font-serif text-2xl font-bold text-primary sm:text-3xl">
                 {selectedProject.title}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">

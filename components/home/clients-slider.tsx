@@ -129,7 +129,7 @@ export function ClientsSlider() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Client Stories
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl lg:text-5xl text-balance">
+            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-primary sm:text-4xl lg:text-5xl text-balance">
               What our clients say about us
             </h2>
           </div>
@@ -203,7 +203,7 @@ export function ClientsSlider() {
                   <p className="text-xs uppercase tracking-[0.15em] text-primary-foreground/45">
                     Key Result
                   </p>
-                  <p className="mt-1 text-lg font-bold text-brand-accent font-serif">
+                  <p className="mt-1 text-lg font-bold text-on-primary-bright font-serif">
                     {client.result}
                   </p>
                 </div>
@@ -227,7 +227,7 @@ export function ClientsSlider() {
                     {Array.from({ length: client.rating }).map((_, i) => (
                       <Star
                         key={i}
-                        className="h-4 w-4 fill-brand-accent text-brand-accent"
+                        className="h-4 w-4 fill-amber-400 text-amber-500"
                       />
                     ))}
                   </div>

@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
           <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
             {post.category}
           </span>
-          <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
+          <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-primary sm:text-4xl text-balance">
             {post.title}
           </h1>
           <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">

@@ -58,8 +58,9 @@ export function Overview() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Our Approach
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl lg:text-5xl text-balance">
-              Built on four core pillars
+            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-primary sm:text-4xl lg:text-5xl text-balance">
+              Built on{" "}
+              <span className="text-brand-highlight">four core pillars</span>
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
               Every strategy we craft is built on a proven framework that
@@ -100,7 +101,7 @@ export function Overview() {
                     {pillar.description}
                   </p>
                   <div className="mt-6 border-t border-border pt-4 transition-colors duration-500 group-hover:border-primary-foreground/25">
-                    <p className="text-2xl font-bold font-serif text-brand-accent transition-colors duration-500 group-hover:text-primary-foreground">
+                    <p className="text-2xl font-bold font-serif text-brand-highlight transition-colors duration-500 group-hover:text-primary-foreground">
                       {pillar.metric}
                     </p>
                     <p className="text-xs text-muted-foreground transition-colors duration-500 group-hover:text-primary-foreground/60">

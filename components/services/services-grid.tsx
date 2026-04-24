@@ -141,7 +141,7 @@ export function ServicesGrid() {
                   {expandedIndex === i ? service.fullDesc : service.shortDesc}
                 </p>
                 {expandedIndex === i && (
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-brand-accent/90">
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-on-primary-bright/95">
                     {service.results}
                   </p>
                 )}

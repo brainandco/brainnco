@@ -14,8 +14,11 @@
   /* Brand: logo blue; text on solid blue = white */
   --primary: #1d488f;
   --primary-foreground: #ffffff;
-  /* Accent: logo green — key headings, nav on blue */
+  /* Brand lime: CTAs (with blue text), and accents on blue only — not for body text on white */
   --brand-accent: #b8d446;
+  /* WCAG-style green for rare one-off highlights on light backgrounds (replaces lime-on-white) */
+  --brand-highlight: #2f3d18;
+  --on-primary-bright: #c8e070;
   --secondary: #e8ecf4;
   --secondary-foreground: #1a2e4a;
   --muted: #eef1f6;
@@ -91,6 +94,9 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-brand-accent: var(--brand-accent);
+  --color-brand-highlight: var(--brand-highlight);
+  /* Brighter lime for *large* text/numbers on primary blue (avoid lime-on-white) */
+  --color-on-primary-bright: var(--on-primary-bright);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);

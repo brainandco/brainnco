@@ -60,7 +60,7 @@ export function NewsletterForm() {
             setError(null)
           }}
           placeholder="Enter your email"
-          className="min-w-0 flex-1 rounded-full border border-primary-foreground/25 bg-primary-foreground/5 px-4 py-2.5 text-sm text-primary-foreground placeholder:text-primary-foreground/45 focus:outline-none focus:border-brand-accent/80 focus:ring-1 focus:ring-brand-accent/40"
+          className="min-w-0 flex-1 rounded-full border border-primary-foreground/25 bg-primary-foreground/5 px-4 py-2.5 text-sm text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:border-primary-foreground/60 focus:ring-1 focus:ring-primary-foreground/25"
           aria-label="Email for newsletter"
           disabled={loading}
           autoComplete="email"

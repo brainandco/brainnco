@@ -16,7 +16,7 @@ function StatItem({
   const { count, ref } = useCounterAnimation(target, 2000)
   return (
     <div ref={ref} className="text-center">
-      <p className="text-2xl font-bold font-serif tabular-nums text-brand-accent sm:text-3xl">
+      <p className="text-2xl font-bold font-serif tabular-nums text-primary sm:text-3xl">
         {count}
         {suffix}
       </p>

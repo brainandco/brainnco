@@ -24,7 +24,7 @@ export function CTASection() {
 
             <h2
               className={cn(
-                "font-serif text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-balance text-brand-accent opacity-0",
+                "font-serif text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl lg:text-5xl text-balance opacity-0",
                 isVisible && "animate-slide-up-stagger"
               )}
             >
@@ -53,7 +53,7 @@ export function CTASection() {
               </Link>
               <a
                 href="tel:+966554231498"
-                className="group inline-flex items-center gap-2 rounded-full border-2 border-brand-accent/50 px-8 py-4 text-sm font-medium text-brand-accent transition-all duration-300 hover:bg-brand-accent/10 hover:border-brand-accent"
+                className="group inline-flex items-center gap-2 rounded-full border-2 border-primary-foreground/40 px-8 py-4 text-sm font-medium text-primary-foreground transition-all duration-300 hover:border-primary-foreground/70 hover:bg-primary-foreground/10"
               >
                 <Phone className="h-4 w-4 shrink-0" />
                 <span>Call Us</span>

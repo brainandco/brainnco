@@ -96,7 +96,7 @@ export function ContactForm() {
           {/* Contact Info */}
           <div className="lg:col-span-2">
             <AnimatedSection>
-              <h2 className="font-serif text-2xl font-bold text-brand-accent">
+              <h2 className="font-serif text-2xl font-bold text-primary">
                 Contact Information
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
@@ -175,7 +175,7 @@ export function ContactForm() {
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground">
                     <Send className="h-6 w-6" />
                   </div>
-                  <h3 className="mt-6 font-serif text-2xl font-bold text-brand-accent">
+                  <h3 className="mt-6 font-serif text-2xl font-bold text-primary">
                     Message Sent
                   </h3>
                   <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -203,7 +203,7 @@ export function ContactForm() {
                   onSubmit={handleSubmit}
                   className="rounded-2xl border border-border bg-card p-8 lg:p-10"
                 >
-                  <h3 className="font-serif text-xl font-bold text-brand-accent">
+                  <h3 className="font-serif text-xl font-bold text-primary">
                     Send Us a Message
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">

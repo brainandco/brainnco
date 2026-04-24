@@ -15,11 +15,12 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ]
 
-const navClass = "text-sm tracking-wide transition-colors duration-200 text-brand-accent/90 hover:text-brand-accent"
-const navActive = "text-brand-accent font-medium"
+const navClass =
+  "text-sm tracking-wide text-primary-foreground/90 transition-colors duration-200 hover:text-primary-foreground"
+const navActive = "text-primary-foreground font-semibold"
 
 const ctaClass =
-  "inline-flex items-center justify-center rounded-full border-2 border-brand-accent bg-transparent px-6 py-2.5 text-sm font-medium text-brand-accent transition-opacity hover:bg-brand-accent/10"
+  "inline-flex items-center justify-center rounded-full border-2 border-primary-foreground/50 bg-primary-foreground/5 px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:border-primary-foreground/80 hover:bg-primary-foreground/10"
 
 export function Navbar() {
   const pathname = usePathname()
@@ -58,7 +59,7 @@ export function Navbar() {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 text-brand-accent"
+          className="lg:hidden p-2 text-primary-foreground/90"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -78,7 +79,7 @@ export function Navbar() {
                     "block text-base transition-colors",
                     pathname === link.href
                       ? navActive
-                      : "text-brand-accent/80"
+                      : "text-primary-foreground/85"
                   )}
                 >
                   {link.label}
@@ -89,7 +90,7 @@ export function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
-                className="inline-flex w-full items-center justify-center rounded-full border-2 border-brand-accent px-6 py-3 text-sm font-medium text-brand-accent"
+                className="inline-flex w-full items-center justify-center rounded-full border-2 border-primary-foreground/50 px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary-foreground/10"
               >
                 Get in Touch
               </Link>

@@ -75,7 +75,7 @@ export function PlaneBanner() {
             )}
           >
             <div className="rounded-2xl border border-border bg-card p-8 shadow-xl shadow-primary/5 sm:p-10 lg:p-12">
-              <p className="text-center font-serif text-2xl font-bold leading-snug text-brand-accent sm:text-3xl lg:text-4xl">
+              <p className="text-center font-serif text-2xl font-bold leading-snug text-primary sm:text-3xl lg:text-4xl">
                 Your next growth story starts with a conversation.
               </p>
               <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground sm:text-base">

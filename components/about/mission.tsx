@@ -34,7 +34,7 @@ export function Mission() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Our Mission
               </p>
-              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl text-balance">
+              <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-primary sm:text-4xl text-balance">
                 Empowering businesses through intelligent marketing
               </h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">

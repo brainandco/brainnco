@@ -114,7 +114,7 @@ export function KeyFactors() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Why brain & co.
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-brand-accent sm:text-4xl lg:text-5xl text-balance">
+            <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-primary sm:text-4xl lg:text-5xl text-balance">
               The key factors that set us apart
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -162,7 +162,7 @@ export function KeyFactors() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Core Competencies
             </p>
-            <h3 className="mt-3 font-serif text-2xl font-bold tracking-tight text-brand-accent sm:text-3xl text-balance">
+            <h3 className="mt-3 font-serif text-2xl font-bold tracking-tight text-primary sm:text-3xl text-balance">
               Deep expertise across every digital channel
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

@@ -70,7 +70,7 @@ export function Hero() {
               </span>
               <span
                 className={cn(
-                  "block text-5xl text-brand-accent opacity-0 sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl",
+                  "block text-5xl text-brand-highlight opacity-0 sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl",
                   isVisible && "animate-hero-reveal-up"
                 )}
                 style={isVisible ? { animationDelay: "180ms", animationFillMode: "forwards" } : undefined}
@@ -93,7 +93,7 @@ export function Hero() {
                   </span>
                   <span
                     className={cn(
-                      "absolute -bottom-0.5 left-0 right-0 h-1.5 origin-left rounded-full bg-brand-accent/50 md:h-2",
+                      "absolute -bottom-0.5 left-0 right-0 h-1.5 origin-left rounded-full bg-primary/30 md:h-2",
                       isVisible && "animate-hero-line"
                     )}
                     style={isVisible ? { animationDelay: "520ms", animationFillMode: "forwards" } : undefined}
